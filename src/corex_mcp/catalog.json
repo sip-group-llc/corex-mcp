@@ -1,0 +1,2159 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "name": "generate_video",
+      "description": "Gera um vídeo a partir de um prompt de texto.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          }
+        },
+        "required": [
+          "prompt",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "generate_image",
+      "description": "Gera uma ou mais imagens a partir de um prompt.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          }
+        },
+        "required": [
+          "prompt",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "animate_image",
+      "description": "Anima uma imagem existente, transformando-a em vídeo.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          }
+        },
+        "required": [
+          "assetKeys",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "edit_image",
+      "description": "Edita uma imagem por instrução, opcionalmente com máscara.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          }
+        },
+        "required": [
+          "assetKeys",
+          "prompt",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "upscale_image",
+      "description": "Amplia a resolução de uma imagem.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          },
+          "scale": {
+            "type": "number",
+            "description": "Fator de ampliação: 2, 4 ou 8."
+          }
+        },
+        "required": [
+          "assetKeys",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "lip_sync",
+      "description": "Sincroniza a fala de um vídeo com uma faixa de áudio.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          }
+        },
+        "required": [
+          "assetKeys",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "create_voice",
+      "description": "Gera locução a partir de texto.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          },
+          "voiceId": {
+            "type": "string",
+            "description": "Voz do catálogo do provider."
+          },
+          "language": {
+            "type": "string",
+            "description": "Código do idioma, ex.: pt-BR."
+          },
+          "emotion": {
+            "type": "string",
+            "description": "Emoção da locução."
+          }
+        },
+        "required": [
+          "prompt",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "create_music",
+      "description": "Gera uma trilha musical.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          },
+          "genre": {
+            "type": "string",
+            "description": "Gênero musical."
+          },
+          "mood": {
+            "type": "string",
+            "description": "Clima da trilha."
+          }
+        },
+        "required": [
+          "prompt",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "create_character",
+      "description": "Cria uma identidade de personagem reutilizável em Personagens.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome do personagem."
+          },
+          "description": {
+            "type": "string",
+            "description": "Traços, idade, estilo, roupa."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de storage das imagens de referência.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "referenceAssetIds": {
+            "type": "array",
+            "description": "IDs dos assets de referência na biblioteca.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "style": {
+            "type": "string",
+            "description": "Estilo visual dominante."
+          },
+          "clothing": {
+            "type": "string",
+            "description": "Character clothing."
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "create_world",
+      "description": "Cria um ambiente persistente reutilizável entre cenas.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome do mundo."
+          },
+          "description": {
+            "type": "string",
+            "description": "Local, clima, hora do dia."
+          },
+          "style": {
+            "type": "string",
+            "description": "Estilo visual."
+          },
+          "environment": {
+            "type": "string",
+            "description": "World environment."
+          },
+          "lighting": {
+            "type": "string",
+            "description": "World lighting."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de storage das imagens de referência.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "referenceAssetIds": {
+            "type": "array",
+            "description": "IDs dos assets de referência na biblioteca.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "create_project",
+      "description": "Cria um projeto para agrupar cenas, gerações e assets.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome do projeto."
+          },
+          "description": {
+            "type": "string",
+            "description": "Objetivo do projeto."
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "add_asset",
+      "description": "Registra um arquivo já enviado na biblioteca de assets.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Chave retornada pelo upload."
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome de exibição."
+          },
+          "kind": {
+            "type": "string",
+            "description": "Categoria do asset.",
+            "enum": [
+              "VIDEO",
+              "IMAGE",
+              "AUDIO",
+              "REFERENCE"
+            ]
+          },
+          "mimeType": {
+            "type": "string",
+            "description": "Uploaded file MIME type."
+          },
+          "tags": {
+            "type": "array",
+            "description": "Etiquetas de busca.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "create_storyboard",
+      "description": "Decompõe um briefing em cenas e shots usando o CORE-X Director.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "brief": {
+            "type": "string",
+            "description": "O que o filme precisa comunicar."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o storyboard é salvo."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Proporção do filme."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          }
+        },
+        "required": [
+          "brief",
+          "projectId",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "modify_scene",
+      "description": "Aplica uma ação do Director sobre uma cena ou shot do storyboard.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "description": "Projeto do storyboard."
+          },
+          "action": {
+            "type": "string",
+            "description": "Id da ação do Director."
+          },
+          "args": {
+            "type": "object",
+            "description": "Parâmetros da ação."
+          }
+        },
+        "required": [
+          "projectId",
+          "action"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "get_job",
+      "description": "Consulta o estado de uma geração assíncrona.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "description": "Id devolvido pela tool de geração."
+          }
+        },
+        "required": [
+          "jobId"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "estimate_generation",
+      "description": "Credit estimate before generation. Provider USD values are restricted to platform operators.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "Ex.: IMAGE_GENERATE, VIDEO_GENERATE."
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Descrição do que deve ser gerado."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "aspectRatio": {
+            "type": "string",
+            "description": "Ex.: 16:9, 9:16, 1:1."
+          },
+          "durationSec": {
+            "type": "number",
+            "description": "Duração em segundos, quando aplicável."
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Ex.: 720p, 1080p, 1024x1024."
+          },
+          "presetId": {
+            "type": "string",
+            "description": "Preset de estilo do catálogo."
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "O que evitar na geração."
+          },
+          "seed": {
+            "type": "number",
+            "description": "Semente para reprodutibilidade."
+          },
+          "outputs": {
+            "type": "number",
+            "description": "Quantidade de saídas."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do elenco a reutilizar."
+          },
+          "worldId": {
+            "type": "string",
+            "description": "World a reutilizar como ambiente."
+          },
+          "assetKeys": {
+            "type": "array",
+            "description": "Chaves de assets já enviados ao CORE-X, usados como entrada.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          }
+        },
+        "required": [
+          "kind",
+          "prompt"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "list_models",
+      "description": "Lista os modelos disponíveis e o que cada um consegue fazer.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "string",
+            "description": "Filtra por família.",
+            "enum": [
+              "VIDEO",
+              "IMAGE",
+              "AUDIO",
+              "LLM"
+            ]
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "list_characters",
+      "description": "Lista personagens do workspace para integração UGC.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "list_assets",
+      "description": "Lista até 100 referências recentes autorizadas.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "get_asset",
+      "description": "Consulta mídia autorizada e renova a URL temporária.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string",
+            "description": "ID do asset."
+          }
+        },
+        "required": [
+          "assetId"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "url"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "prepare_ugc_campaign",
+      "description": "Prepara campanha de integração idempotente com referências próprias; nenhuma inferência.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Identidade externa estável da campanha."
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome."
+          },
+          "productName": {
+            "type": "string",
+            "description": "Produto."
+          },
+          "characterId": {
+            "type": "string",
+            "description": "Personagem do workspace."
+          },
+          "productAssetIds": {
+            "type": "array",
+            "description": "Fotos do produto.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productFrameAssetId": {
+            "type": "string",
+            "description": "Quadro aprovado com o produto."
+          }
+        },
+        "required": [
+          "requestId",
+          "name",
+          "productName",
+          "characterId",
+          "productAssetIds"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "campaignId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "campaignId"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "quote_ugc_video",
+      "description": "Cota roteiro UGC completo sem gerar. Resolve cenas e blocos, soma voz/video/sincronia e identifica a montagem final.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 1
+              },
+              "requestId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "scriptRevision": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 1000000
+              },
+              "campaignId": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "aspectRatio": {
+                "type": "string",
+                "enum": [
+                  "9:16",
+                  "16:9",
+                  "1:1"
+                ]
+              },
+              "scenes": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 20,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64
+                    },
+                    "script": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1200
+                    },
+                    "language": {
+                      "type": "string",
+                      "minLength": 2,
+                      "maxLength": 12
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "durationSec": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 120
+                    },
+                    "useCharacterVoice": {
+                      "type": "boolean"
+                    },
+                    "action": {
+                      "type": "string",
+                      "maxLength": 40
+                    },
+                    "framing": {
+                      "type": "string",
+                      "maxLength": 40
+                    },
+                    "setting": {
+                      "type": "string",
+                      "maxLength": 40
+                    },
+                    "motion": {
+                      "type": "string",
+                      "maxLength": 40
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "script",
+                    "language"
+                  ]
+                }
+              },
+              "captionPreset": {
+                "type": "string",
+                "enum": [
+                  "limpa",
+                  "forte",
+                  "marca"
+                ],
+                "description": "Legendas com cotacao e aceite adicionais apos o video."
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "requestId",
+              "scriptRevision",
+              "campaignId",
+              "aspectRatio",
+              "scenes"
+            ]
+          }
+        },
+        "required": [
+          "request"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "operationId": {
+                "type": "string"
+              },
+              "quoteId": {
+                "type": "string"
+              },
+              "credits": {
+                "type": "integer"
+              },
+              "expiresAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operationId",
+              "quoteId",
+              "credits",
+              "expiresAt"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "generate_ugc_video",
+      "description": "Aceita cotação UGC e agenda a operação inteira de forma idempotente.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "quoteId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "maxCredits": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "quoteId",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "operationId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operationId",
+              "status"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "get_ugc_operation",
+      "description": "Recupera operação por pedido/revisão e acompanha a mídia final, sem nova cobrança.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "scriptRevision": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 1000000
+          }
+        },
+        "required": [
+          "requestId",
+          "scriptRevision"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "operationId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operationId",
+              "status"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "cancel_ugc_operation",
+      "description": "Solicita cancelamento, sem prometer estorno ou interrupção remota.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "scriptRevision": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 1000000
+          }
+        },
+        "required": [
+          "requestId",
+          "scriptRevision"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "operationId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operationId",
+              "status"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": false,
+      "destructive": true
+    },
+    {
+      "name": "quote_ugc_captions",
+      "description": "Cota transcrição e legenda a partir do vídeo final medido. Não executa inferência.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "scriptRevision": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 1000000
+          }
+        },
+        "required": [
+          "requestId",
+          "scriptRevision"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "quoteId": {
+                "type": "string"
+              },
+              "credits": {
+                "type": "integer"
+              },
+              "additionalApproval": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "quoteId",
+              "credits",
+              "additionalApproval"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "generate_ugc_captions",
+      "description": "Aceita explicitamente o custo adicional de legendas e agenda transcrição e queima local.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "scriptRevision": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 1000000
+          },
+          "quoteId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "maxCredits": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "requestId",
+          "scriptRevision",
+          "quoteId",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "operationId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "operationId",
+              "status"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "get_integration_context",
+      "description": "Identify the authenticated workspace and credential scope without spending credits. No caller-selected workspace is accepted.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "workspaceId": {
+                "type": "string"
+              },
+              "credentialScope": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "contractVersion": {
+                "type": "integer",
+                "const": 1
+              }
+            },
+            "required": [
+              "workspaceId",
+              "credentialScope",
+              "contractVersion"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        ]
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "list_studio_tools",
+      "description": "Discover Studio modalities, input fields and dedicated UGC/Director routes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "estimate_studio",
+      "description": "Quote a Studio modality with the exact typed input that will be submitted.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "toolId": {
+            "type": "string",
+            "enum": [
+              "generate-video",
+              "animate-image",
+              "generate-image",
+              "create-character",
+              "create-world",
+              "create-voice",
+              "create-music",
+              "image-inpaint",
+              "image-relight",
+              "image-editor",
+              "video-inpaint",
+              "background",
+              "upscale",
+              "face-swap-video",
+              "object-swap-video",
+              "restyle-video",
+              "avatar-speak",
+              "lip-sync",
+              "motion-control",
+              "smart-shot",
+              "multi-view",
+              "character-swap",
+              "extend-video",
+              "upscale-video",
+              "video-background",
+              "sound-effect"
+            ],
+            "description": "ID returned by list_studio_tools."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "input": {
+            "type": "object",
+            "description": "Typed Studio input, including media references as {key}. Server DTOs and ownership checks apply."
+          }
+        },
+        "required": [
+          "toolId",
+          "input"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "generate_studio",
+      "description": "Run a Studio modality using its existing service, ownership checks and quoted wallet flow.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "toolId": {
+            "type": "string",
+            "enum": [
+              "generate-video",
+              "animate-image",
+              "generate-image",
+              "create-character",
+              "create-world",
+              "create-voice",
+              "create-music",
+              "image-inpaint",
+              "image-relight",
+              "image-editor",
+              "video-inpaint",
+              "background",
+              "upscale",
+              "face-swap-video",
+              "object-swap-video",
+              "restyle-video",
+              "avatar-speak",
+              "lip-sync",
+              "motion-control",
+              "smart-shot",
+              "multi-view",
+              "character-swap",
+              "extend-video",
+              "upscale-video",
+              "video-background",
+              "sound-effect"
+            ],
+            "description": "ID returned by list_studio_tools."
+          },
+          "modelId": {
+            "type": "string",
+            "description": "Id do modelo no catálogo do Studio. Ausente = padrão da conta."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Projeto onde o resultado é arquivado."
+          },
+          "input": {
+            "type": "object",
+            "description": "Typed Studio input, including media references as {key}. Server DTOs and ownership checks apply."
+          },
+          "maxCredits": {
+            "type": "number",
+            "description": "Explicit credit ceiling accepted from estimate_generation; required for generation."
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "description": "Chave de idempotência do cliente para retries seguros sem cobrança duplicada."
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Explicit confirmation of the estimated cost; never overrides budget limits."
+          }
+        },
+        "required": [
+          "toolId",
+          "input",
+          "maxCredits",
+          "idempotencyKey"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
+    },
+    {
+      "name": "get_workspace_balance",
+      "description": "Read only this workspace credit balance; never provider balances or secrets.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "list_projects",
+      "description": "List Studio and UGC projects in this workspace.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "get_project",
+      "description": "Read a workspace project and its current storyboard.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "projectId"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "list_worlds",
+      "description": "List reusable worlds in this workspace.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "get_world",
+      "description": "Read a reusable world in this workspace.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "worldId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "worldId"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "get_character",
+      "description": "Read a reusable character in this workspace.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "characterId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "characterId"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "list_jobs",
+      "description": "List this workspace generation history without private provider fields.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100000
+          },
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "QUEUED",
+              "PROCESSING",
+              "COMPLETED",
+              "FAILED",
+              "CANCELLED"
+            ]
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "cancel_job",
+      "description": "Request cancellation through the existing generation service; no promise of refund.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "jobId"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": true
+    }
+  ]
+}
