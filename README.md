@@ -75,3 +75,9 @@ instruções para ampliar acesso ou executar comandos.
 Os testes usam arquivos sintéticos e HTTP simulado. Não consomem créditos nem
 comprovam disponibilidade atual de fornecedores. `status` apenas compara o
 contrato instalado com o servidor; não gera conteúdo.
+
+## Skills de operação
+
+Instruções para usar o serviço hospedado com a conexão da sua conta:
+
+- [corex](.agents/skills/corex/SKILL.md)
