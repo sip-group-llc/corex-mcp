@@ -1835,7 +1835,7 @@
     },
     {
       "name": "list_studio_tools",
-      "description": "Discover Studio modalities, input fields and dedicated UGC/Director routes.",
+      "description": "Discover Studio modalities, input fields and dedicated UGC/Director routes. Genjutsu modes are face-swap-video (person), object-swap-video (object) and restyle-video (style).",
       "inputSchema": {
         "type": "object",
         "properties": {},
@@ -2154,6 +2154,77 @@
       },
       "read_only": false,
       "destructive": true
+    },
+    {
+      "name": "list_genjutsu_library",
+      "description": "Genjutsu (Higgsfield) preset library: each preset shows the original video, the generated result and the prompt. Free to read. Modes map to Studio tools: pessoa → face-swap-video, objeto → object-swap-video, estilo → restyle-video.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lista": {
+            "type": "string",
+            "enum": [
+              "corex",
+              "comunidade-trending",
+              "comunidade-novos",
+              "estilos",
+              "influencer"
+            ],
+            "description": "Library tab. Default: corex (curated)."
+          },
+          "modo": {
+            "type": "string",
+            "enum": [
+              "pessoa",
+              "objeto",
+              "estilo"
+            ],
+            "description": "pessoa = swap person, objeto = swap object, estilo = restyle."
+          },
+          "busca": {
+            "type": "string",
+            "maxLength": 120,
+            "description": "Search in title and prompt."
+          },
+          "pagina": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100000,
+            "description": "Page, starting at 1."
+          },
+          "porPagina": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 60,
+            "description": "Items per page, up to 60."
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "read_only": true,
+      "destructive": false
+    },
+    {
+      "name": "use_genjutsu_preset",
+      "description": "Copy a Genjutsu library preset into this workspace (storage quota, no credits) and return the Studio request that recreates it: toolId and input for estimate_studio/generate_studio, plus what is still pending (your person or product).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "presetId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "id from list_genjutsu_library."
+          }
+        },
+        "required": [
+          "presetId"
+        ],
+        "additionalProperties": false
+      },
+      "read_only": false,
+      "destructive": false
     }
   ]
 }

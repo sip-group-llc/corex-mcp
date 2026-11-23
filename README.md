@@ -3,7 +3,7 @@
 Cliente para o CoreX hospedado. Este repositório distribui contratos e o cliente;
 o backend, as contas de fornecedores e a lógica de cobrança ficam privados.
 
-São 39 ferramentas de workspace encaminhadas ao servidor e uma ferramenta local
+São 41 ferramentas de workspace encaminhadas ao servidor e uma ferramenta local
 de upload. Tokens UGC exibem apenas suas 14 ferramentas e o upload. O saldo dos
 fornecedores e as APIs administrativas não fazem parte deste cliente.
 

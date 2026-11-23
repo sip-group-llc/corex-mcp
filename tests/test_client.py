@@ -26,9 +26,9 @@ class ClientTest(unittest.TestCase):
         self.addCleanup(client.close);return client
 
     def test_workspace_catalog_and_scopes(self):
-        self.assertEqual(len(catalog()),39)
+        self.assertEqual(len(catalog()),41)
         self.assertNotIn('get_balance',{x['name'] for x in catalog()})
-        self.assertEqual(len(self.client().operations),40)
+        self.assertEqual(len(self.client().operations),42)
         client=CoreX(credentials=self.root/'missing',base='https://corex.test',token='corex_ugc_'+'b'*43)
         self.addCleanup(client.close)
         self.assertEqual(set(client.operations),UGC_TOOLS|{'upload_file'})

@@ -81,7 +81,7 @@ class StdioProtocolTest(unittest.TestCase):
                 send('notifications/initialized', {})
                 tools = send('tools/list', {}, 2)['result']['tools']
                 self.assertEqual({t['name'] for t in tools}, {t['name'] for t in catalog()} | {'upload_file'})
-                self.assertEqual(len(tools), 40)
+                self.assertEqual(len(tools), 42)
                 result = send('tools/call', {'name': 'get_integration_context', 'arguments': {}}, 3)['result']
                 self.assertFalse(result.get('isError'))
                 self.assertEqual(result['structuredContent']['workspaceId'], 'fixture')
