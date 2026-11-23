@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "corex-mcp"
-version = "1.0.0"
+version = "1.1.0"
 description = "Workspace-scoped client for the hosted CoreX MCP"
 readme = "README.md"
 requires-python = ">=3.11"
